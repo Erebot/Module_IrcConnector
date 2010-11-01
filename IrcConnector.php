@@ -55,14 +55,16 @@ extends ErebotModuleBase
 
     public function handleConnect(iErebotEvent &$event)
     {
-        $metadata = stream_get_meta_data($this->_connection->getSocket());
+        $config =&  $this->_connection->getConfig(NULL);
+        $url    =   parse_url($config->getConnectionURL());
+
         // If no upgrade should be performed or
         // if the connection is already encrypted.
         if (!$this->parseBool('upgrade', FALSE) ||
-            !strcasecmp($metadata['wrapper_type'], 'ircs'))
+            !strcasecmp($url['scheme'], 'ircs'))
             $this->sendCredentials();
         // Otherwise, start a TLS negociation.
-        else {        
+        else {
             $handler = new ErebotRawHandler(
                             array($this, 'handleSTARTTLSSuccess'),
                             RPL_STARTTLSOK);
@@ -77,12 +79,17 @@ extends ErebotModuleBase
 
     public function handleSTARTTLSSuccess(iErebotRaw &$raw)
     {
-        /// @HACK: this is an evil hack to start sending a TLS handshake.
-        $wrong = stream_set_write_buffer($this->_connection->getSocket(), 1);
-        if ($wrong)
+        try {
+            stream_socket_enable_crypto(
+                $this->_connection->getSocket(),
+                TRUE,
+                STREAM_CRYPTO_METHOD_TLS_CLIENT
+            );
+        }
+        catch (EErebotErrorReporting $e) {
             $this->_connection->disconnect(NULL, TRUE);
-        else
-            $this->sendCredentials();
+        }
+        $this->sendCredentials();
     }
 
     public function handleSTARTTLSFailure(iErebotRaw &$raw)
