@@ -16,7 +16,7 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class   ErebotModule_IrcConnector
+class   Erebot_Module_IrcConnector
 extends ErebotModuleBase
 {
     protected $_password;
