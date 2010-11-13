@@ -86,7 +86,7 @@ extends ErebotModuleBase
                 STREAM_CRYPTO_METHOD_TLS_CLIENT
             );
         }
-        catch (EErebotErrorReporting $e) {
+        catch (Erebot_ErrorReportingException $e) {
             $this->_connection->disconnect(NULL, TRUE);
         }
         $this->sendCredentials();
