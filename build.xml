@@ -12,7 +12,6 @@
     <fileset dir="tests/" id="tests">
         <include name="**/*.php"/>
         <exclude name="testenv/**/*.php"/>
-        <exclude name="Core/**/*.php"/>
     </fileset>
 
     <import file="buildenv/build.xml"/>
