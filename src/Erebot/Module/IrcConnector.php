@@ -17,7 +17,7 @@
 */
 
 class   Erebot_Module_IrcConnector
-extends ErebotModuleBase
+extends Erebot_Module_Base
 {
     protected $_password;
     protected $_nickname;
@@ -28,9 +28,9 @@ extends ErebotModuleBase
     public function reload($flags)
     {
         if ($flags & self::RELOAD_HANDLERS) {
-            $handler = new ErebotEventHandler(
+            $handler = new Erebot_EventHandler(
                 array($this, 'handleConnect'),
-                'ErebotEventLogon');
+                'Erebot_Event_Logon');
             $this->_connection->addEventHandler($handler);
         }
     }
@@ -53,7 +53,7 @@ extends ErebotModuleBase
                             ' '.$url['host'].' :'.$this->_realname);
     }
 
-    public function handleConnect(iErebotEvent &$event)
+    public function handleConnect(Erebot_Interface_Event_Generic &$event)
     {
         $config =&  $this->_connection->getConfig(NULL);
         $url    =   parse_url($config->getConnectionURL());
@@ -65,19 +65,19 @@ extends ErebotModuleBase
             $this->sendCredentials();
         // Otherwise, start a TLS negociation.
         else {
-            $handler = new ErebotRawHandler(
+            $handler = new Erebot_RawHandler(
                             array($this, 'handleSTARTTLSSuccess'),
-                            RPL_STARTTLSOK);
+                            Erebot_Interface_Event_Raw::RPL_STARTTLSOK);
             $this->_connection->addRawHandler($handler);
-            $handler = new ErebotRawHandler(
+            $handler = new Erebot_RawHandler(
                             array($this, 'handleSTARTTLSFailure'),
-                            ERR_STARTTLSFAIL);
+                            Erebot_Interface_Event_Raw::ERR_STARTTLSFAIL);
             $this->_connection->addRawHandler($handler);
             $this->sendCommand('STARTTLS');
         }
     }
 
-    public function handleSTARTTLSSuccess(iErebotRaw &$raw)
+    public function handleSTARTTLSSuccess(Erebot_Interface_Event_Raw &$raw)
     {
         try {
             stream_socket_enable_crypto(
@@ -92,7 +92,7 @@ extends ErebotModuleBase
         $this->sendCredentials();
     }
 
-    public function handleSTARTTLSFailure(iErebotRaw &$raw)
+    public function handleSTARTTLSFailure(Erebot_Interface_Event_Raw &$raw)
     {
         $this->_connection->disconnect(NULL, TRUE);
     }

@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <project name="Erebot_Module_IrcConnector" description="" default="all">
     <property name="locales"            value="fr_FR,en_US"/>
-    <property name="domain"             value="IrcConnector"/>
     <property name="version"            value="0.3.2"/>
     <property name="email"              value="clicky@erebot.net"/>
     <property name="qa.coverage.force"  value="false"/>
@@ -16,6 +15,5 @@
         <exclude name="Core/**/*.php"/>
     </fileset>
 
-    <php expression="if (!class_exists('ErebotModuleBase')) { class ErebotModuleBase {} }"/>
     <import file="buildenv/build.xml"/>
 </project>
