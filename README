@@ -1,3 +1,16 @@
-Connects the bot to an IRC(S) server
+Connect to an IRC server, with optional security upgrade
 
-Package detailed description here (found in README)
+This module is required in order for Erebot to work properly.
+You should probably always install it.
+It sends credentials to the server whenever the bot connects.
+
+It also supports the STARTTLS extension (security upgrade),
+which can be used to connect to an IRC server on a port
+shared by both plain-text and encrypted connections.
+Set the "upgrade" paramater to "1" in the connection URL
+to make use of this feature.
+Eg. "irc://irc.example.com?upgrade=1"
+
+Please note that Secure IRC connections (IRCS) do not have
+any need for that "security upgrade" feature, as they are
+already encrypted when established.
