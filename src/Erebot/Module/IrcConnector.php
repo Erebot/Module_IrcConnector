@@ -30,7 +30,8 @@ extends Erebot_Module_Base
         if ($flags & self::RELOAD_HANDLERS) {
             $handler = new Erebot_EventHandler(
                 array($this, 'handleConnect'),
-                'Erebot_Event_Logon');
+                new Erebot_Event_Match_InstanceOf('Erebot_Event_Logon')
+            );
             $this->_connection->addEventHandler($handler);
         }
     }
@@ -66,12 +67,14 @@ extends Erebot_Module_Base
         // Otherwise, start a TLS negociation.
         else {
             $handler = new Erebot_RawHandler(
-                            array($this, 'handleSTARTTLSSuccess'),
-                            Erebot_Interface_Event_Raw::RPL_STARTTLSOK);
+                array($this, 'handleSTARTTLSSuccess'),
+                Erebot_Interface_Event_Raw::RPL_STARTTLSOK
+            );
             $this->_connection->addRawHandler($handler);
             $handler = new Erebot_RawHandler(
-                            array($this, 'handleSTARTTLSFailure'),
-                            Erebot_Interface_Event_Raw::ERR_STARTTLSFAIL);
+                array($this, 'handleSTARTTLSFailure'),
+                Erebot_Interface_Event_Raw::ERR_STARTTLSFAIL
+            );
             $this->_connection->addRawHandler($handler);
             $this->sendCommand('STARTTLS');
         }
