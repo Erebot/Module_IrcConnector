@@ -70,7 +70,7 @@ extends ErebotModuleTestCase
         );
         $thiq->assertEquals(
             'USER identity hostname :realname',
-            $this->_outputBuffer[0]
+            $this->_outputBuffer[1]
         );
     }
 
