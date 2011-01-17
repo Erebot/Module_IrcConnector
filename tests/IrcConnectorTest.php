@@ -64,12 +64,12 @@ extends ErebotModuleTestCase
         $event = new Erebot_Event_Logon($this->_connection);
         $this->_module->handleLogon($event);
         $this->assertEquals(2, count($this->_outputBuffer));
-        $thiq->assertEquals(
+        $this->assertEquals(
             'NICK Erebot',
             $this->_outputBuffer[0]
         );
-        $thiq->assertEquals(
-            'USER identity hostname :realname',
+        $this->assertEquals(
+            'USER identity hostname 0.0.0.0 :realname',
             $this->_outputBuffer[1]
         );
     }
@@ -90,16 +90,16 @@ extends ErebotModuleTestCase
         $event = new Erebot_Event_Logon($this->_connection);
         $this->_module->handleLogon($event);
         $this->assertEquals(3, count($this->_outputBuffer));
-        $thiq->assertEquals(
+        $this->assertEquals(
             'PASS password',
             $this->_outputBuffer[0]
         );
-        $thiq->assertEquals(
+        $this->assertEquals(
             'NICK Erebot',
             $this->_outputBuffer[1]
         );
-        $thiq->assertEquals(
-            'USER identity hostname :realname',
+        $this->assertEquals(
+            'USER identity hostname 0.0.0.0 :realname',
             $this->_outputBuffer[2]
         );
     }
