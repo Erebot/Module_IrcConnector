@@ -76,8 +76,8 @@ extends Erebot_Module_Base
         $this->_hostname = $this->parseString('hostname', 'Erebot');
         $this->_realname = $this->parseString('realname', 'Erebot');
 
-        $config =&  $this->_connection->getConfig(NULL);
-        $url    =   parse_url($config->getConnectionURL());
+        $config = $this->_connection->getConfig(NULL);
+        $url    = parse_url($config->getConnectionURL());
 
         if ($this->_password != '')
             $this->sendCommand('PASS '.$this->_password);
@@ -86,10 +86,10 @@ extends Erebot_Module_Base
                             ' '.$url['host'].' :'.$this->_realname);
     }
 
-    public function handleLogon(Erebot_Interface_Event_Generic &$event)
+    public function handleLogon(Erebot_Interface_Event_Generic $event)
     {
-        $config =&  $this->_connection->getConfig(NULL);
-        $url    =   parse_url($config->getConnectionURL());
+        $config = $this->_connection->getConfig(NULL);
+        $url    = parse_url($config->getConnectionURL());
 
         // If no upgrade should be performed or
         // if the connection is already encrypted.
@@ -112,7 +112,7 @@ extends Erebot_Module_Base
         }
     }
 
-    public function handleSTARTTLSSuccess(Erebot_Interface_Event_Raw &$raw)
+    public function handleSTARTTLSSuccess(Erebot_Interface_Event_Raw $raw)
     {
         try {
             stream_socket_enable_crypto(
@@ -127,7 +127,7 @@ extends Erebot_Module_Base
         $this->sendCredentials();
     }
 
-    public function handleSTARTTLSFailure(Erebot_Interface_Event_Raw &$raw)
+    public function handleSTARTTLSFailure(Erebot_Interface_Event_Raw $raw)
     {
         $this->_connection->disconnect(NULL, TRUE);
     }
