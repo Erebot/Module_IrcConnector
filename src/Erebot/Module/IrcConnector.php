@@ -37,7 +37,7 @@ extends Erebot_Module_Base
     protected $_hostname;
     protected $_realname;
 
-    public function reload($flags)
+    public function _reload($flags)
     {
         if ($flags & self::RELOAD_HANDLERS) {
             $handler = new Erebot_EventHandler(
@@ -48,8 +48,12 @@ extends Erebot_Module_Base
         }
     }
 
+    protected function _unload()
+    {
+    }
+
     /**
-     * This method send IRC credentials over the connection.
+     * This method sends IRC credentials over the connection.
      * It is called automatically by this module once the
      * connection has been established and the optional
      * security upgrade has been applied to it.
