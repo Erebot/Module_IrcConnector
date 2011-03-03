@@ -81,24 +81,26 @@ extends Erebot_Module_Base
         $this->_realname = $this->parseString('realname', 'Erebot');
 
         $config = $this->_connection->getConfig(NULL);
-        $url    = parse_url($config->getConnectionURL());
+        $URIs   = $config->getConnectionURI();
+        $URI    = new Erebot_URI($URIs[count($URIs) - 1]);
 
         if ($this->_password != '')
             $this->sendCommand('PASS '.$this->_password);
         $this->sendCommand('NICK '.$this->_nickname);
         $this->sendCommand('USER '.$this->_identity.' '.$this->_hostname.
-                            ' '.$url['host'].' :'.$this->_realname);
+                            ' '.$URI->getHost().' :'.$this->_realname);
     }
 
     public function handleLogon(Erebot_Interface_Event_Generic $event)
     {
         $config = $this->_connection->getConfig(NULL);
-        $url    = parse_url($config->getConnectionURL());
+        $URIs   = $config->getConnectionURI();
+        $URI    = new Erebot_URI($URIs[count($URIs) - 1]);
 
         // If no upgrade should be performed or
         // if the connection is already encrypted.
         if (!$this->parseBool('upgrade', FALSE) ||
-            !strcasecmp($url['scheme'], 'ircs'))
+            !strcasecmp($URI->getScheme(), 'ircs'))
             $this->sendCredentials();
         // Otherwise, start a TLS negociation.
         else {
