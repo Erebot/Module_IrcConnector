@@ -31,15 +31,15 @@ extends ErebotModuleTestCase
 
         $this->_serverConfig
             ->expects($this->any())
-            ->method('getConnectionURL')
-            ->will($this->returnValue('ircs://0.0.0.0/'));
+            ->method('getConnectionURI')
+            ->will($this->returnValue(array('ircs://0.0.0.0/')));
 
-        $this->_module = new Erebot_Module_IrcConnector(
+        $this->_module = new Erebot_Module_IrcConnector(NULL);
+        $this->_module->reload(
             $this->_connection,
-            NULL
+            Erebot_Module_Base::RELOAD_ALL |
+            Erebot_Module_Base::RELOAD_INIT
         );
-        $this->_module->reload( Erebot_Module_Base::RELOAD_ALL |
-                                Erebot_Module_Base::RELOAD_INIT);
     }
 
     public function tearDown()
