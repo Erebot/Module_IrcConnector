@@ -99,8 +99,7 @@ extends Erebot_Module_Base
 
         // If no upgrade should be performed or
         // if the connection is already encrypted.
-        if (!$this->parseBool('upgrade', FALSE) ||
-            !strcasecmp($URI->getScheme(), 'ircs'))
+        if (!$this->parseBool('upgrade', FALSE) || $URI->getScheme() == 'ircs')
             $this->sendCredentials();
         // Otherwise, start a TLS negociation.
         else {
