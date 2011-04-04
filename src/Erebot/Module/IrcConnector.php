@@ -42,7 +42,7 @@ extends Erebot_Module_Base
         if ($flags & self::RELOAD_HANDLERS) {
             $handler = new Erebot_EventHandler(
                 array($this, 'handleLogon'),
-                new Erebot_Event_Match_InstanceOf('Erebot_Event_Interface_Logon')
+                new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_Logon')
             );
             $this->_connection->addEventHandler($handler);
         }
