@@ -91,7 +91,7 @@ extends Erebot_Module_Base
                             ' '.$URI->getHost().' :'.$this->_realname);
     }
 
-    public function handleLogon(Erebot_Interface_Event_Base_Generic $event)
+    public function handleLogon(Erebot_Interface_Event_Logon $event)
     {
         $config = $this->_connection->getConfig(NULL);
         $URIs   = $config->getConnectionURI();
