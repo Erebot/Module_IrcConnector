@@ -1,6 +1,7 @@
 #
 msgid   ""
-msgstr  "Project-Id-Version: PACKAGE VERSION\n"
+msgstr  "Project-Id-Version: Erebot_Module_IrcConnector 0.5.0\n"
+        "PO-Revision-Date: 2011-04-16 12:24+0200\n"
         "Last-Translator: Automatically generated\n"
         "Language-Team: none\n"
         "MIME-Version: 1.0\n"
