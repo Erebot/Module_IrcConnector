@@ -105,12 +105,12 @@ extends Erebot_Module_Base
         else {
             $handler = new Erebot_RawHandler(
                 array($this, 'handleSTARTTLSSuccess'),
-                Erebot_Interface_Event_Raw::RPL_STARTTLSOK
+                $this->getRawRef('RPL_STARTTLSOK')
             );
             $this->_connection->addRawHandler($handler);
             $handler = new Erebot_RawHandler(
                 array($this, 'handleSTARTTLSFailure'),
-                Erebot_Interface_Event_Raw::ERR_STARTTLSFAIL
+                $this->getRawRef('ERR_STARTTLSFAIL')
             );
             $this->_connection->addRawHandler($handler);
             $this->sendCommand('STARTTLS');
