@@ -45,6 +45,12 @@ extends Erebot_Module_Base
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_Logon')
             );
             $this->_connection->addEventHandler($handler);
+
+            $handler = new Erebot_EventHandler(
+                array($this, 'handleExit'),
+                new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_Exit')
+            );
+            $this->_connection->addEventHandler($handler);
         }
     }
 
@@ -115,6 +121,11 @@ extends Erebot_Module_Base
             $this->_connection->addRawHandler($handler);
             $this->sendCommand('STARTTLS');
         }
+    }
+
+    public function handleExit(Erebot_Interface_Event_Exit $event)
+    {
+        $this->_connection->disconnect($this->parseString('quit_message', ''));
     }
 
     public function handleSTARTTLSSuccess(Erebot_Interface_Event_Raw $raw)
