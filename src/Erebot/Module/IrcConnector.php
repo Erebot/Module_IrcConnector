@@ -101,7 +101,10 @@ extends Erebot_Module_Base
                             ' '.$URI->getHost().' :'.$this->_realname);
     }
 
-    public function handleLogon(Erebot_Interface_Event_Logon $event)
+    public function handleLogon(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_Logon    $event
+    )
     {
         $config = $this->_connection->getConfig(NULL);
         $URIs   = $config->getConnectionURI();
@@ -127,12 +130,18 @@ extends Erebot_Module_Base
         }
     }
 
-    public function handleExit(Erebot_Interface_Event_Exit $event)
+    public function handleExit(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_Exit     $event
+    )
     {
         $this->_connection->disconnect($this->parseString('quit_message', ''));
     }
 
-    public function handleSTARTTLSSuccess(Erebot_Interface_Event_Raw $raw)
+    public function handleSTARTTLSSuccess(
+        Erebot_Interface_RawHandler $handler,
+        Erebot_Interface_Event_Raw  $raw
+    )
     {
         try {
             stream_socket_enable_crypto(
@@ -147,7 +156,10 @@ extends Erebot_Module_Base
         $this->sendCredentials();
     }
 
-    public function handleSTARTTLSFailure(Erebot_Interface_Event_Raw $raw)
+    public function handleSTARTTLSFailure(
+        Erebot_Interface_RawHandler $handler,
+        Erebot_Interface_Event_Raw  $raw
+    )
     {
         $this->_connection->disconnect(NULL, TRUE);
     }
