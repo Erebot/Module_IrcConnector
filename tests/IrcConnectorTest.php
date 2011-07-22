@@ -62,7 +62,7 @@ extends ErebotModuleTestCase
             ));
 
         $event = new Erebot_Event_Logon($this->_connection);
-        $this->_module->handleLogon($event);
+        $this->_module->handleLogon($this->_eventHandler, $event);
         $this->assertEquals(2, count($this->_outputBuffer));
         $this->assertEquals(
             'NICK Erebot',
@@ -88,7 +88,7 @@ extends ErebotModuleTestCase
             ));
 
         $event = new Erebot_Event_Logon($this->_connection);
-        $this->_module->handleLogon($event);
+        $this->_module->handleLogon($this->_eventHandler, $event);
         $this->assertEquals(3, count($this->_outputBuffer));
         $this->assertEquals(
             'PASS password',
