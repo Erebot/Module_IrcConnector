@@ -36,6 +36,7 @@ extends Erebot_Module_Base
     protected $_identity;
     protected $_hostname;
     protected $_realname;
+    protected $_uriFactory = 'Erebot_URI';
 
     public function _reload($flags)
     {
@@ -60,6 +61,21 @@ extends Erebot_Module_Base
 
     protected function _unload()
     {
+    }
+
+    public function setURIFactory($cls)
+    {
+        $reflector = new ReflectionClass($cls);
+        if (!$reflector->isSubclassOf('Erebot_Interface_URI'))
+            throw new Erebot_InvalidValueException(
+                'A class that implements Erebot_Interface_URI was expected'
+            );
+        $this->_uriFactory = $cls;
+    }
+
+    public function getURIFactory()
+    {
+        return $this->_uriFactory;
     }
 
     /**
@@ -92,7 +108,7 @@ extends Erebot_Module_Base
 
         $config = $this->_connection->getConfig(NULL);
         $URIs   = $config->getConnectionURI();
-        $URI    = new Erebot_URI($URIs[count($URIs) - 1]);
+        $URI    = new $this->_uriFactory($URIs[count($URIs) - 1]);
 
         if ($this->_password != '')
             $this->sendCommand('PASS '.$this->_password);
@@ -108,7 +124,7 @@ extends Erebot_Module_Base
     {
         $config = $this->_connection->getConfig(NULL);
         $URIs   = $config->getConnectionURI();
-        $URI    = new Erebot_URI($URIs[count($URIs) - 1]);
+        $URI    = new $this->_uriFactory($URIs[count($URIs) - 1]);
 
         // If no upgrade should be performed or
         // if the connection is already encrypted.
