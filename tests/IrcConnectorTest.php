@@ -16,15 +16,104 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once(
-    dirname(__FILE__) .
-    DIRECTORY_SEPARATOR . 'testenv' .
-    DIRECTORY_SEPARATOR . 'bootstrap.php'
-);
+class       TestURIFactory
+implements  Erebot_Interface_URI
+{
+    public function __construct($uri)
+    {
+    }
+
+    public function toURI($raw = FALSE, $credentials = TRUE)
+    {
+    }
+
+    public function __toString()
+    {
+    }
+
+    public function getScheme($raw = FALSE)
+    {
+    }
+
+    public function setScheme($scheme)
+    {
+    }
+
+    public function getUserInfo($raw = FALSE)
+    {
+    }
+
+    public function setUserInfo($userinfo)
+    {
+    }
+
+    public function getHost($raw = FALSE)
+    {
+        return '0.0.0.0';
+    }
+
+    public function setHost($host)
+    {
+    }
+
+    public function getPort($raw = FALSE)
+    {
+    }
+
+    public function setPort($port)
+    {
+    }
+
+    public function getPath($raw = FALSE)
+    {
+    }
+
+    public function setPath($path)
+    {
+    }
+
+    public function getQuery($raw = FALSE)
+    {
+    }
+
+    public function setQuery($query)
+    {
+    }
+
+    public function getFragment($raw = FALSE)
+    {
+    }
+
+    public function setFragment($fragment)
+    {
+    }
+
+    public function asParsedURL($component = -1)
+    {
+    }
+
+    public function relative($reference)
+    {
+    }
+}
 
 class   IrcConnectorTest
 extends ErebotModuleTestCase
 {
+    public function _getMock()
+    {
+        $event = $this->getMock(
+            'Erebot_Interface_Event_Logon',
+            array(), array(), '', FALSE, FALSE
+        );
+
+        $event
+            ->expects($this->any())
+            ->method('getConnection')
+            ->will($this->returnValue($this->_connection));
+        return $event;
+    }
+
     public function setUp()
     {
         parent::setUp();
@@ -35,11 +124,8 @@ extends ErebotModuleTestCase
             ->will($this->returnValue(array('ircs://0.0.0.0/')));
 
         $this->_module = new Erebot_Module_IrcConnector(NULL);
-        $this->_module->reload(
-            $this->_connection,
-            Erebot_Module_Base::RELOAD_ALL |
-            Erebot_Module_Base::RELOAD_INIT
-        );
+        $this->_module->setURIFactory('TestURIFactory');
+        $this->_module->reload($this->_connection, 0);
     }
 
     public function tearDown()
@@ -61,8 +147,7 @@ extends ErebotModuleTestCase
                 'realname'  // realname
             ));
 
-        $event = new Erebot_Event_Logon($this->_connection);
-        $this->_module->handleLogon($this->_eventHandler, $event);
+        $this->_module->handleLogon($this->_eventHandler, $this->_getMock());
         $this->assertEquals(2, count($this->_outputBuffer));
         $this->assertEquals(
             'NICK Erebot',
@@ -87,8 +172,7 @@ extends ErebotModuleTestCase
                 'realname'  // realname
             ));
 
-        $event = new Erebot_Event_Logon($this->_connection);
-        $this->_module->handleLogon($this->_eventHandler, $event);
+        $this->_module->handleLogon($this->_eventHandler, $this->_getMock());
         $this->assertEquals(3, count($this->_outputBuffer));
         $this->assertEquals(
             'PASS password',
