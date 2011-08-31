@@ -107,14 +107,16 @@ extends Erebot_Module_Base
         $this->_realname = $this->parseString('realname', 'Erebot');
 
         $config = $this->_connection->getConfig(NULL);
-        $URIs   = $config->getConnectionURI();
-        $URI    = new $this->_uriFactory($URIs[count($URIs) - 1]);
+        $uris   = $config->getConnectionURI();
+        $uri    = new $this->_uriFactory($uris[count($uris) - 1]);
 
         if ($this->_password != '')
             $this->sendCommand('PASS '.$this->_password);
         $this->sendCommand('NICK '.$this->_nickname);
-        $this->sendCommand('USER '.$this->_identity.' '.$this->_hostname.
-                            ' '.$URI->getHost().' :'.$this->_realname);
+        $this->sendCommand(
+            'USER '.$this->_identity.' '.$this->_hostname.' '.
+            $uri->getHost().' :'.$this->_realname
+        );
     }
 
     public function handleLogon(
@@ -123,12 +125,12 @@ extends Erebot_Module_Base
     )
     {
         $config = $this->_connection->getConfig(NULL);
-        $URIs   = $config->getConnectionURI();
-        $URI    = new $this->_uriFactory($URIs[count($URIs) - 1]);
+        $uris   = $config->getConnectionURI();
+        $uri    = new $this->_uriFactory($uris[count($uris) - 1]);
 
         // If no upgrade should be performed or
         // if the connection is already encrypted.
-        if (!$this->parseBool('upgrade', FALSE) || $URI->getScheme() == 'ircs')
+        if (!$this->parseBool('upgrade', FALSE) || $uri->getScheme() == 'ircs')
             $this->sendCredentials();
         // Otherwise, start a TLS negociation.
         else {
