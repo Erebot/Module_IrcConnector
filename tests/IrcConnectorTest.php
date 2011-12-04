@@ -95,6 +95,10 @@ implements  Erebot_Interface_URI
     public function relative($reference)
     {
     }
+
+    static public function fromAbsPath($abspath, $strict = TRUE)
+    {
+    }
 }
 
 class   IrcConnectorTest
