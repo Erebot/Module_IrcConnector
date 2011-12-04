@@ -16,84 +16,12 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class       TestURIFactory
-implements  Erebot_Interface_URI
+abstract class  TestURIFactory
+implements      Erebot_Interface_URI
 {
-    public function __construct($uri)
-    {
-    }
-
-    public function toURI($raw = FALSE, $credentials = TRUE)
-    {
-    }
-
-    public function __toString()
-    {
-    }
-
-    public function getScheme($raw = FALSE)
-    {
-    }
-
-    public function setScheme($scheme)
-    {
-    }
-
-    public function getUserInfo($raw = FALSE)
-    {
-    }
-
-    public function setUserInfo($userinfo)
-    {
-    }
-
     public function getHost($raw = FALSE)
     {
         return '0.0.0.0';
-    }
-
-    public function setHost($host)
-    {
-    }
-
-    public function getPort($raw = FALSE)
-    {
-    }
-
-    public function setPort($port)
-    {
-    }
-
-    public function getPath($raw = FALSE)
-    {
-    }
-
-    public function setPath($path)
-    {
-    }
-
-    public function getQuery($raw = FALSE)
-    {
-    }
-
-    public function setQuery($query)
-    {
-    }
-
-    public function getFragment($raw = FALSE)
-    {
-    }
-
-    public function setFragment($fragment)
-    {
-    }
-
-    public function asParsedURL($component = -1)
-    {
-    }
-
-    public function relative($reference)
-    {
     }
 
     static public function fromAbsPath($abspath, $strict = TRUE)
@@ -102,7 +30,7 @@ implements  Erebot_Interface_URI
 }
 
 class   IrcConnectorTest
-extends ErebotModuleTestCase
+extends Erebot_Testenv_Module_TestCase
 {
     public function _getMock()
     {
@@ -120,6 +48,7 @@ extends ErebotModuleTestCase
 
     public function setUp()
     {
+        $this->_module = new Erebot_Module_IrcConnector(NULL);
         parent::setUp();
 
         $this->_serverConfig
@@ -127,8 +56,14 @@ extends ErebotModuleTestCase
             ->method('getConnectionURI')
             ->will($this->returnValue(array('ircs://0.0.0.0/')));
 
-        $this->_module = new Erebot_Module_IrcConnector(NULL);
-        $this->_module->setURIFactory('TestURIFactory');
+        $uriMock = $this->getMockForAbstractClass(
+            'TestURIFactory',
+            array(),
+            '',
+            FALSE,
+            FALSE
+        );
+        $this->_module->setURIFactory(get_class($uriMock));
         $this->_module->reload($this->_connection, 0);
     }
 
