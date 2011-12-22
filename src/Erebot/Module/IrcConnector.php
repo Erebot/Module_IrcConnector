@@ -31,13 +31,36 @@
 class   Erebot_Module_IrcConnector
 extends Erebot_Module_Base
 {
+    /// Password of the IRC server.
     protected $_password;
+
+    /// Nickname to use to connect to the IRC server.
     protected $_nickname;
+
+    /// Identity of the bot on IRC.
     protected $_identity;
+
+    /// Hostname the bot will pretend to be coming from (possibly a fake).
     protected $_hostname;
+
+    /// The bot's real name on IRC.
     protected $_realname;
+
+    /// Class used to parse Uniform Resource Identifiers.
     protected $_uriFactory = 'Erebot_URI';
 
+    /**
+     * This method is called whenever the module is (re)loaded.
+     *
+     * \param int $flags
+     *      A bitwise OR of the Erebot_Module_Base::RELOAD_*
+     *      constants. Your method should take proper actions
+     *      depending on the value of those flags.
+     *
+     * \note
+     *      See the documentation on individual RELOAD_*
+     *      constants for a list of possible values.
+     */
     public function _reload($flags)
     {
         if ($flags & self::RELOAD_HANDLERS) {
@@ -59,10 +82,21 @@ extends Erebot_Module_Base
         }
     }
 
+    /// \copydoc Erebot_Module_Base::_unload()
     protected function _unload()
     {
     }
 
+    /**
+     * Handles a connection to an IRC server.
+     * This method is called during the logon phase,
+     * right after a TCP connection has been established
+     * but before the IRC server accepted us.
+     *
+     * \param string $cls
+     *      Name of a class implementing Erebot_Interface_URI
+     *      to use to parse Uniform Resource Identifiers.
+     */
     public function setURIFactory($cls)
     {
         $reflector = new ReflectionClass($cls);
@@ -73,6 +107,16 @@ extends Erebot_Module_Base
         $this->_uriFactory = $cls;
     }
 
+    /**
+     * Handles a connection to an IRC server.
+     * This method is called during the logon phase,
+     * right after a TCP connection has been established
+     * but before the IRC server accepted us.
+     *
+     * \retval string
+     *      Name of the class used to parse
+     *      Uniform Resource Identifiers.
+     */
     public function getURIFactory()
     {
         return $this->_uriFactory;
@@ -119,6 +163,23 @@ extends Erebot_Module_Base
         );
     }
 
+    /**
+     * Handles a connection to an IRC server.
+     * This method is called during the logon phase,
+     * right after a TCP connection has been established
+     * but before the IRC server accepted us.
+     *
+     * \param Erebot_Interface_EventHandler $handler
+     *      Handler that triggered this event.
+     *
+     * \param Erebot_Interface_Event_Event_Logon $event
+     *      Logon event.
+     *
+     * \return
+     *      This method does not return anything.
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function handleLogon(
         Erebot_Interface_EventHandler   $handler,
         Erebot_Interface_Event_Logon    $event
@@ -148,6 +209,21 @@ extends Erebot_Module_Base
         }
     }
 
+    /**
+     * Handles an exit request (eg. when the bot receives
+     * the SIGTERM signal).
+     *
+     * \param Erebot_Interface_EventHandler $handler
+     *      Handler that triggered this event.
+     *
+     * \param Erebot_Interface_Event_Event_Exit $event
+     *      Exit event.
+     *
+     * \return
+     *      This method does not return anything.
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function handleExit(
         Erebot_Interface_EventHandler   $handler,
         Erebot_Interface_Event_Exit     $event
@@ -156,6 +232,22 @@ extends Erebot_Module_Base
         $this->_connection->disconnect($this->parseString('quit_message', ''));
     }
 
+    /**
+     * Handles a successful TLS session.
+     *
+     * \param Erebot_Interface_EventHandler $handler
+     *      Handler that triggered this event.
+     *
+     * \param Erebot_Interface_Event_Event_Raw $raw
+     *      Raw event indicating that the TLS session
+     *      was successfully established.
+     *
+     * \return
+     *      This method does not return anything.
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+     */
     public function handleSTARTTLSSuccess(
         Erebot_Interface_RawHandler $handler,
         Erebot_Interface_Event_Raw  $raw
@@ -174,6 +266,21 @@ extends Erebot_Module_Base
         $this->sendCredentials();
     }
 
+    /**
+     * Handles a failed TLS session.
+     *
+     * \param Erebot_Interface_EventHandler $handler
+     *      Handler that triggered this event.
+     *
+     * \param Erebot_Interface_Event_Event_Raw $raw
+     *      Raw event indicating that the TLS session
+     *      could not be established.
+     *
+     * \return
+     *      This method does not return anything.
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function handleSTARTTLSFailure(
         Erebot_Interface_RawHandler $handler,
         Erebot_Interface_Event_Raw  $raw
