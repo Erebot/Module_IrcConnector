@@ -17,9 +17,9 @@ Contents:
 
 Current status on http://travis-ci.org/:
 
-..  image:: https://secure.travis-ci.org/fpoirotte/Erebot_Module_IrcConnector.png
+..  image:: https://secure.travis-ci.org/Erebot/Erebot_Module_IrcConnector.png
     :alt: unknown
-    :target: http://travis-ci.org/#!/fpoirotte/Erebot_Module_IrcConnector/
+    :target: http://travis-ci.org/#!/Erebot/Erebot_Module_IrcConnector/
 
 
 ..  _`Erebot`:
