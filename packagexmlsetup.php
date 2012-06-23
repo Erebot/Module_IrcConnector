@@ -5,7 +5,7 @@
  * More information: http://pear.php.net/manual/en/pyrus.commands.make.php#pyrus.commands.make.packagexmlsetup
  */
 
-$apiVersion = "0.1.0";
+$apiVersion = "0.2.0";
 
 $deps = array(
     'required' => array(
