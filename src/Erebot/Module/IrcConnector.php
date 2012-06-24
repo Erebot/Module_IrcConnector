@@ -234,6 +234,11 @@ extends Erebot_Module_Base
         // if the connection is already encrypted.
         if (!$this->parseBool('upgrade', FALSE) || $uri->getScheme() == 'ircs')
             $this->sendCredentials();
+        // The socket extension is not enabled.
+        // This should never happen actually as we are already connected!
+        else if (!in_array('sockets', get_loaded_extensions())) {
+            $this->_connection->disconnect(NULL, TRUE);
+        }
         // Otherwise, start a TLS negociation.
         else {
             $handler = new Erebot_RawHandler(
@@ -302,7 +307,7 @@ extends Erebot_Module_Base
             );
         }
         catch (Erebot_ErrorReportingException $e) {
-            $this->_connection->disconnect(NULL, TRUE);
+            return $this->_connection->disconnect(NULL, TRUE);
         }
         $this->sendCredentials();
     }

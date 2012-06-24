@@ -19,10 +19,11 @@
  */
 $metadata['pear.erebot.net/' . $packageName] += array(
     'requires' => array(
-        'php' => '>= 5.2.0',
-        'pear2.php.net/pyrus' => '> 2.0.0alpha3',
-        'virt-Erebot_API',
         'pear.erebot.net/Erebot',
+        'pear2.php.net/pyrus' => '> 2.0.0alpha3',
+        'pecl.php.net/sockets',
+        'php' => '>= 5.2.0',
+        'virt-Erebot_API',
     ),
     'license' => array(
         'GPL' => 'http://www.gnu.org/licenses/gpl-3.0.txt',
