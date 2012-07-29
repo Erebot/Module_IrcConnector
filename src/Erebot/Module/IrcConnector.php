@@ -241,16 +241,16 @@ extends Erebot_Module_Base
         }
         // Otherwise, start a TLS negociation.
         else {
-            $handler = new Erebot_RawHandler(
+            $handler = new Erebot_NumericHandler(
                 new Erebot_Callable(array($this, 'handleSTARTTLSSuccess')),
-                $this->getRawRef('RPL_STARTTLSOK')
+                $this->getNumRef('RPL_STARTTLSOK')
             );
-            $this->_connection->addRawHandler($handler);
-            $handler = new Erebot_RawHandler(
+            $this->_connection->addNumericHandler($handler);
+            $handler = new Erebot_NumericHandler(
                 new Erebot_Callable(array($this, 'handleSTARTTLSFailure')),
-                $this->getRawRef('ERR_STARTTLSFAIL')
+                $this->getNumRef('ERR_STARTTLSFAIL')
             );
-            $this->_connection->addRawHandler($handler);
+            $this->_connection->addNumericHandler($handler);
             $this->sendCommand('STARTTLS');
         }
     }
@@ -284,8 +284,8 @@ extends Erebot_Module_Base
      * \param Erebot_Interface_EventHandler $handler
      *      Handler that triggered this event.
      *
-     * \param Erebot_Interface_Event_Event_Raw $raw
-     *      Raw event indicating that the TLS session
+     * \param Erebot_Interface_Event_Event_Numeric $numeric
+     *      Numeric event indicating that the TLS session
      *      was successfully established.
      *
      * \return
@@ -295,8 +295,8 @@ extends Erebot_Module_Base
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function handleSTARTTLSSuccess(
-        Erebot_Interface_RawHandler $handler,
-        Erebot_Interface_Event_Raw  $raw
+        Erebot_Interface_NumericHandler $handler,
+        Erebot_Interface_Event_Numeric  $numeric
     )
     {
         try {
@@ -318,8 +318,8 @@ extends Erebot_Module_Base
      * \param Erebot_Interface_EventHandler $handler
      *      Handler that triggered this event.
      *
-     * \param Erebot_Interface_Event_Event_Raw $raw
-     *      Raw event indicating that the TLS session
+     * \param Erebot_Interface_Event_Event_Numeric $numeric
+     *      Numeric event indicating that the TLS session
      *      could not be established.
      *
      * \return
@@ -328,8 +328,8 @@ extends Erebot_Module_Base
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function handleSTARTTLSFailure(
-        Erebot_Interface_RawHandler $handler,
-        Erebot_Interface_Event_Raw  $raw
+        Erebot_Interface_NumericHandler $handler,
+        Erebot_Interface_Event_Numeric  $numeric
     )
     {
         $this->_connection->disconnect(NULL, TRUE);
