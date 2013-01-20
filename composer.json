@@ -1,0 +1,42 @@
+{
+    "name": "erebot/erebot-module-ircconnector",
+    "description": "Erebot module to connect to an IRC server",
+    "keywords": ["Erebot", "IRC", "bot", "module"],
+    "homepage": "https://github.com/Erebot/Erebot_Module_IrcConnector",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "François Poirotte",
+            "email": "clicky@erebot.net",
+            "role": "lead"
+        }
+    ],
+    "support": {
+        "email": "erebot@erebot.net",
+        "issues": "https://github.com/Erebot/Erebot_Module_IrcConnector/issues",
+        "wiki": "http://erebot.github.com/Erebot_Module_IrcConnector/",
+        "irc": "irc://irc.iiens.net/Erebot",
+        "source": "https://github.com/Erebot/Erebot_Module_IrcConnector"
+    },
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "http://pear.php.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.2",
+        "ext-sockets": "*",
+        "erebot/erebot-api": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Erebot": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
