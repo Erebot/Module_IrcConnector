@@ -1,5 +1,5 @@
 {
-    "name": "erebot/erebot-module-ircconnector",
+    "name": "erebot/ircconnector-module",
     "description": "Erebot module to connect to an IRC server",
     "keywords": ["Erebot", "IRC", "bot", "module"],
     "homepage": "https://github.com/Erebot/Erebot_Module_IrcConnector",
@@ -14,20 +14,24 @@
     "support": {
         "email": "erebot@erebot.net",
         "issues": "https://github.com/Erebot/Erebot_Module_IrcConnector/issues",
-        "wiki": "http://erebot.github.com/Erebot_Module_IrcConnector/",
+        "wiki": "http://erebot.github.io/Erebot_Module_IrcConnector/",
         "irc": "irc://irc.iiens.net/Erebot",
         "source": "https://github.com/Erebot/Erebot_Module_IrcConnector"
     },
     "repositories": [
         {
-            "type": "pear",
-            "url": "http://pear.php.net"
+            "type": "composer",
+            "url": "http://packages.erebot.net"
         }
     ],
     "require": {
         "php": ">=5.2.2",
         "ext-sockets": "*",
-        "erebot/erebot-api": "*"
+        "erebot/api": "dev-master"
+    },
+    "require-dev": {
+        "erebot/buildenv": "dev-master",
+        "erebot/testenv": "dev-master"
     },
     "autoload": {
         "psr-0": {

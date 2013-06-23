@@ -1,0 +1,178 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "cf25e907fbb78024b50ad1f9711d5555",
+    "packages": [
+        {
+            "name": "erebot/api",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Erebot/Erebot_API.git",
+                "reference": "6c7ed0a4a0c078604af97739a2dfc48d4eae1e18"
+            },
+            "dist": {
+                "type": "tar",
+                "url": "https://packages.erebot.net:943/composer/erebot-api-6c7ed0a4a0c078604af97739a2dfc48d4eae1e18-zip-decce0.tar",
+                "reference": "dev-master",
+                "shasum": "0dc96387d5683c928ba0ec386ed9146ad5a0f877"
+            },
+            "require": {
+                "php": ">=5.2.2"
+            },
+            "require-dev": {
+                "erebot/buildenv": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Erebot": "src/"
+                }
+            },
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "François Poirotte",
+                    "email": "clicky@erebot.net",
+                    "role": "lead"
+                }
+            ],
+            "description": "API for the Erebot project",
+            "homepage": "https://github.com/Erebot/Erebot_API",
+            "keywords": [
+                "Erebot",
+                "IRC",
+                "bot"
+            ],
+            "support": {
+                "email": "erebot@erebot.net",
+                "issues": "https://github.com/Erebot/Erebot_API/issues",
+                "wiki": "http://erebot.github.com/Erebot/",
+                "irc": "irc://irc.iiens.net/Erebot",
+                "source": "https://github.com/Erebot/Erebot_API"
+            },
+            "time": "2013-06-23 21:22:11"
+        }
+    ],
+    "packages-dev": [
+        {
+            "name": "erebot/buildenv",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Erebot/Erebot_Buildenv.git",
+                "reference": "7bc65a49e3a05c44bb068af01b386282c5455e37"
+            },
+            "dist": {
+                "type": "tar",
+                "url": "https://packages.erebot.net:943/composer/erebot-buildenv-7bc65a49e3a05c44bb068af01b386282c5455e37-zip-870f51.tar",
+                "reference": "dev-master",
+                "shasum": "f2e736dff40e6d4c8152ca6ee4dbaec0fd32fcb6"
+            },
+            "require": {
+                "php": ">=5.2.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "François Poirotte",
+                    "email": "clicky@erebot.net",
+                    "role": "lead"
+                }
+            ],
+            "description": "Build environment for the Erebot project",
+            "homepage": "https://github.com/Erebot/Erebot_Buildenv",
+            "keywords": [
+                "Erebot"
+            ],
+            "support": {
+                "email": "erebot@erebot.net",
+                "issues": "https://github.com/Erebot/Erebot_Buildenv/issues",
+                "wiki": "http://erebot.github.com/Erebot/",
+                "irc": "irc://irc.iiens.net/Erebot",
+                "source": "https://github.com/Erebot/Erebot_Buildenv"
+            },
+            "time": "2013-06-23 21:54:05"
+        },
+        {
+            "name": "erebot/testenv",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Erebot/Erebot_Testenv.git",
+                "reference": "8fde5593cf5c18244aaa65c358c00639f2ed72ed"
+            },
+            "dist": {
+                "type": "tar",
+                "url": "https://packages.erebot.net:943/composer/erebot-testenv-8fde5593cf5c18244aaa65c358c00639f2ed72ed-zip-d8d6b4.tar",
+                "reference": "dev-master",
+                "shasum": "29857363da6a548e0224428aba8e177806485640"
+            },
+            "require": {
+                "php": ">=5.2.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "François Poirotte",
+                    "email": "clicky@erebot.net",
+                    "role": "lead"
+                }
+            ],
+            "description": "Test environment for the Erebot project",
+            "homepage": "https://github.com/Erebot/Erebot_Testenv",
+            "keywords": [
+                "Erebot"
+            ],
+            "support": {
+                "email": "erebot@erebot.net",
+                "issues": "https://github.com/Erebot/Erebot_Testenv/issues",
+                "wiki": "http://erebot.github.com/Erebot/",
+                "irc": "irc://irc.iiens.net/Erebot",
+                "source": "https://github.com/Erebot/Erebot_Testenv"
+            },
+            "time": "2013-06-23 14:48:21"
+        }
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "erebot/api": 20,
+        "erebot/buildenv": 20,
+        "erebot/testenv": 20
+    },
+    "platform": {
+        "php": ">=5.2.2",
+        "ext-sockets": "*"
+    },
+    "platform-dev": [
+
+    ]
+}
