@@ -14,7 +14,8 @@ notifications:
     irc: "irc.iiens.net#Erebot"
 
 before_script:
-    - git submodule update --init
+    - wget http://getcomposer.org/composer.phar
+    - php composer.phar install --dev
 
-script: phpunit --bootstrap tests/testenv/bootstrap.php tests/
+script: phpunit --bootstrap vendor/erebot/testenv/bootstrap.php tests/
 
