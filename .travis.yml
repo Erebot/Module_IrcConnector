@@ -15,7 +15,8 @@ notifications:
 
 before_script:
     - wget http://getcomposer.org/composer.phar
-    - php composer.phar install --dev
+    - if [[ "$TRAVIS_PHP_VERSION" = "5.3.3" ]]; then php composer.phar install --dev --prefer-source; fi
+    - if [[ "$TRAVIS_PHP_VERSION" != "5.3.3" ]]; then php composer.phar install --dev; fi
 
 script: phpunit --bootstrap vendor/erebot/testenv/bootstrap.php tests/
 
