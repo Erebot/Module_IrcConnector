@@ -27,7 +27,9 @@
     "require": {
         "php": ">=5.2.2",
         "ext-sockets": "*",
-        "erebot/api": "dev-master"
+        "erebot/api": "dev-master",
+        "erebot/installers": "dev-master",
+        "erebot/generic-doc": "dev-master"
     },
     "require-dev": {
         "erebot/buildenv": "dev-master",
