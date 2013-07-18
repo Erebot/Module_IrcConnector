@@ -15,12 +15,12 @@ Contents:
     Configuration
     Usage
 
-Current status on http://travis-ci.org/:
 
-..  image:: https://secure.travis-ci.org/Erebot/Erebot_Module_IrcConnector.png
-    :alt: unknown
-    :target: http://travis-ci.org/#!/Erebot/Erebot_Module_IrcConnector/
+Current status on http://travis-ci.org/: |travis|
 
+..  |travis| image:: https://secure.travis-ci.org/Erebot/Erebot_Module_IrcConnector.png
+    :alt: UNKNOWN
+    :target: https://travis-ci.org/Erebot/Erebot_Module_IrcConnector/
 
 ..  _`Erebot`:
     https://www.erebot.net/
