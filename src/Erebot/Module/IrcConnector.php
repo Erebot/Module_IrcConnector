@@ -28,8 +28,9 @@
  *      See http://wiki.inspircd.org/STARTTLS_Documentation
  *      for more information on the STARTTLS extension.
  */
-class   Erebot_Module_IrcConnector
-extends Erebot_Module_Base
+class       Erebot_Module_IrcConnector
+extends     Erebot_Module_Base
+implements  Erebot_Interface_HelpEnabled
 {
     /// Password of the IRC server.
     protected $_password;
@@ -79,9 +80,6 @@ extends Erebot_Module_Base
                 )
             );
             $this->_connection->addEventHandler($handler);
-
-            $cls = $this->getFactory('!Callable');
-            $this->registerHelpMethod(new $cls(array($this, 'getHelp')));
         }
     }
 
@@ -90,18 +88,7 @@ extends Erebot_Module_Base
     {
     }
 
-    /**
-     * Provides help about this module.
-     *
-     * \param Erebot_Interface_Event_Base_TextMessage $event
-     *      Some help request.
-     *
-     * \param Erebot_Interface_TextWrapper $words
-     *      Parameters passed with the request. This is the same
-     *      as this module's name when help is requested on the
-     *      module itself (in opposition with help on a specific
-     *      command provided by the module).
-     */
+    /// \copydoc Erebot_Interface_HelpEnabled::getHelp()
     public function getHelp(
         Erebot_Interface_Event_Base_TextMessage $event,
         Erebot_Interface_TextWrapper            $words

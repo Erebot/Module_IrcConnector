@@ -29,9 +29,28 @@ implements      Erebot_Interface_URI
     }
 }
 
+class FakeHelper
+{
+    public function realRegisterHelpMethod(
+        Erebot_Module_Base          $module,
+        Erebot_Interface_Callable   $callable
+    )
+    {
+    }
+}
+
 class   IrcConnectorTest
 extends Erebot_Testenv_Module_TestCase
 {
+    protected function _setConnectionExpectations()
+    {
+        parent::_setConnectionExpectations();
+        $this->_connection
+            ->expects($this->any())
+            ->method('getModule')
+            ->will($this->returnValue(new FakeHelper()));
+    }
+
     public function _getMock()
     {
         $event = $this->getMock(
