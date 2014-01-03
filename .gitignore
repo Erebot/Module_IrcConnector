@@ -5,6 +5,7 @@
 /docs/api
 /docs/coverage
 /docs/enduser
+/docs/src/generic
 
 /*.pem
 /*.phar
