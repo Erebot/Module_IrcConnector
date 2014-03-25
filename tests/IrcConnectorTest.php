@@ -69,7 +69,7 @@ extends Erebot_Testenv_Module_TestCase
             FALSE
         );
         $this->_module->setURIFactory(get_class($uriMock));
-        $this->_module->moduleReload($this->_connection, 0);
+        $this->_module->reloadModule($this->_connection, 0);
     }
 
     public function tearDown()
