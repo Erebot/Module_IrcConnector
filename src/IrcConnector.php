@@ -74,7 +74,7 @@ class IrcConnector extends \Erebot\Module\Base implements \Erebot\Interfaces\Hel
             $this->connection->addEventHandler($handler);
 
             $handler = new \Erebot\EventHandler(
-                new CallableWrapper(array($this, 'handleExit')),
+                new \Erebot\CallableWrapper(array($this, 'handleExit')),
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ExitEvent'
                 )

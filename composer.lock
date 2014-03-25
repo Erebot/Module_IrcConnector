@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1c6583b598fac413d2265d49bb965a2c",
+    "hash": "4022e8abeffec8f0f6087742b2d9cbb2",
     "packages": [
         {
             "name": "erebot/api",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/Erebot_API.git",
-                "reference": "7baf0d63a81bb7c18813dc086bd079dcdb973620"
+                "reference": "66abd9929f512946828c26d6a3b46641f31ad9b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/Erebot_API/zipball/7baf0d63a81bb7c18813dc086bd079dcdb973620",
-                "reference": "7baf0d63a81bb7c18813dc086bd079dcdb973620",
+                "url": "https://api.github.com/repos/Erebot/Erebot_API/zipball/66abd9929f512946828c26d6a3b46641f31ad9b4",
+                "reference": "66abd9929f512946828c26d6a3b46641f31ad9b4",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,7 @@
                 "bot",
                 "irc"
             ],
-            "time": "2014-03-25 17:56:36"
+            "time": "2014-03-25 23:35:44"
         },
         {
             "name": "erebot/callable-wrapper",
@@ -114,16 +114,16 @@
         },
         {
             "name": "erebot/generic-doc",
-            "version": "0.1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/Erebot_Module_Skeleton_Doc.git",
-                "reference": "a211b4d8957e018916fd52ba5d6771ce7aedb4ad"
+                "reference": "49d5da55fdda7694a51fbb4675566debedf3a10b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/Erebot_Module_Skeleton_Doc/zipball/a211b4d8957e018916fd52ba5d6771ce7aedb4ad",
-                "reference": "a211b4d8957e018916fd52ba5d6771ce7aedb4ad",
+                "url": "https://api.github.com/repos/Erebot/Erebot_Module_Skeleton_Doc/zipball/49d5da55fdda7694a51fbb4675566debedf3a10b",
+                "reference": "49d5da55fdda7694a51fbb4675566debedf3a10b",
                 "shasum": ""
             },
             "require": {
@@ -155,7 +155,7 @@
                 "documentation",
                 "irc"
             ],
-            "time": "2014-01-01 20:30:57"
+            "time": "2014-01-03 16:28:56"
         },
         {
             "name": "erebot/installers",
@@ -1995,10 +1995,11 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "erebot/api": 20
+        "erebot/api": 20,
+        "erebot/generic-doc": 20
     },
     "platform": {
-        "php": ">=5.2.2",
+        "php": ">=5.3.0",
         "ext-sockets": "*"
     },
     "platform-dev": [
