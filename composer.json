@@ -20,10 +20,10 @@
         "source": "https://github.com/Erebot/Erebot_Module_IrcConnector"
     },
     "require": {
-        "php": ">=5.2.2",
+        "php": ">=5.3.0",
         "ext-sockets": "*",
         "erebot/api": "dev-master",
-        "erebot/generic-doc": "~0.1.0"
+        "erebot/generic-doc": "dev-master"
     },
     "require-dev": {
         "erebot/buildenv": "~1.1",
