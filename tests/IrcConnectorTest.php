@@ -17,24 +17,14 @@
 */
 
 abstract class  TestURIFactory
-implements      Erebot_Interface_URI
+implements      \Erebot\URIInterface
 {
     public function getHost($raw = FALSE)
     {
         return '0.0.0.0';
     }
 
-    static public function fromAbsPath($abspath, $strict = TRUE)
-    {
-    }
-}
-
-class FakeHelper
-{
-    public function realRegisterHelpMethod(
-        Erebot_Module_Base          $module,
-        Erebot_Interface_Callable   $callable
-    )
+    public static function fromAbsPath($abspath, $strict = TRUE)
     {
     }
 }
@@ -45,16 +35,12 @@ extends Erebot_Testenv_Module_TestCase
     protected function _setConnectionExpectations()
     {
         parent::_setConnectionExpectations();
-        $this->_connection
-            ->expects($this->any())
-            ->method('getModule')
-            ->will($this->returnValue(new FakeHelper()));
     }
 
     public function _getMock()
     {
         $event = $this->getMock(
-            'Erebot_Interface_Event_Logon',
+            '\\Erebot\\Interfaces\\Event\\Logon',
             array(), array(), '', FALSE, FALSE
         );
 
@@ -67,7 +53,7 @@ extends Erebot_Testenv_Module_TestCase
 
     public function setUp()
     {
-        $this->_module = new Erebot_Module_IrcConnector(NULL);
+        $this->_module = new \Erebot\Module\IrcConnector(NULL);
         parent::setUp();
 
         $this->_serverConfig
@@ -83,7 +69,7 @@ extends Erebot_Testenv_Module_TestCase
             FALSE
         );
         $this->_module->setURIFactory(get_class($uriMock));
-        $this->_module->reload($this->_connection, 0);
+        $this->_module->moduleReload($this->_connection, 0);
     }
 
     public function tearDown()
@@ -92,7 +78,7 @@ extends Erebot_Testenv_Module_TestCase
         parent::tearDown();
     }
 
-    public function testRegistrationWithoutPassword()
+    public function testPasswordlessRegistration()
     {
         $this->_serverConfig
             ->expects($this->any())
@@ -117,7 +103,7 @@ extends Erebot_Testenv_Module_TestCase
         );
     }
 
-    public function testRegistrationWithSomePassword()
+    public function testPasswordedRegistration()
     {
         $this->_serverConfig
             ->expects($this->any())
