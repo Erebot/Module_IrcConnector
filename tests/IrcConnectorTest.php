@@ -53,7 +53,6 @@ extends Erebot_Testenv_Module_TestCase
 
     public function setUp()
     {
-        class_exists('\\Erebot\\Module\\callable');
         $this->_module = new \Erebot\Module\IrcConnector(NULL);
         parent::setUp();
 
