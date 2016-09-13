@@ -39,11 +39,7 @@ extends Erebot_Testenv_Module_TestCase
 
     public function _getMock()
     {
-        $event = $this->getMock(
-            '\\Erebot\\Interfaces\\Event\\Logon',
-            array(), array(), '', FALSE, FALSE
-        );
-
+        $event = $this->getMockBuilder('\\Erebot\\Interfaces\\Event\\Logon')->getMock();
         $event
             ->expects($this->any())
             ->method('getConnection')
