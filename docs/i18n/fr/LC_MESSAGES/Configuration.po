@@ -1,0 +1,98 @@
+# French translations for Erebot_Module_IrcConnector package.
+# Copyright (C) 2011-2016, Erebot
+# This file is distributed under the same license as the Erebot_Module_IrcConnector package.
+# Automatically generated, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Erebot_Module_IrcConnector 1.0.x-dev\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-29 22:57+0100\n"
+"PO-Revision-Date: 2016-12-29 22:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#
+msgid "Configuration"
+msgstr ""
+#
+msgid "Options"
+msgstr ""
+#
+msgid "This module offers several configuration options."
+msgstr ""
+#
+msgid "Options for |project|"
+msgstr ""
+#
+msgid "Name"
+msgstr ""
+#
+msgid "Type"
+msgstr ""
+#
+msgid "Default value"
+msgstr ""
+#
+msgid "Description"
+msgstr ""
+#
+msgid "hostname"
+msgstr ""
+#
+msgid "string"
+msgstr ""
+#
+msgid "\"Erebot\""
+msgstr ""
+#
+msgid ""
+"The bot's hostname. This parameter exists for historical reasons but is "
+"actually ignored by IRC servers."
+msgstr ""
+#
+msgid "identity"
+msgstr ""
+#
+msgid ""
+"The bot's identity. Servers will usually only use it as a fallback if the "
+"machine's real identity cannot be determined. This information is visible "
+"through ``WHOIS`` commands (which displays information such as ``nick!"
+"ident@host``)."
+msgstr ""
+#
+msgid "nickname"
+msgstr ""
+#
+msgid "n/a"
+msgstr ""
+#
+msgid "The nickname the bot will take when connecting to the server."
+msgstr ""
+#
+msgid "password"
+msgstr ""
+#
+msgid "\"\""
+msgstr ""
+#
+msgid ""
+"The password required to connect to the current IRC server. By default, no "
+"password is needed to connect."
+msgstr ""
+#
+msgid "realname"
+msgstr ""
+#
+msgid ""
+"The bot's realname, sometimes also known as the user's `GECOS field`_. This "
+"usually contains information about the bot's administrator or the bot's "
+"purpose for connecting. This information is visible in ``WHOIS`` commands."
+msgstr ""
+#
+msgid "Example"
+msgstr ""
