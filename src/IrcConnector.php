@@ -66,7 +66,7 @@ class IrcConnector extends \Erebot\Module\Base implements \Erebot\Interfaces\Hel
     {
         if ($flags & self::RELOAD_HANDLERS) {
             $handler = new \Erebot\EventHandler(
-                \Erebot\CallableWrapper::wrap(array($this, 'handleLogon')),
+                array($this, 'handleLogon'),
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\Logon'
                 )
@@ -74,7 +74,7 @@ class IrcConnector extends \Erebot\Module\Base implements \Erebot\Interfaces\Hel
             $this->connection->addEventHandler($handler);
 
             $handler = new \Erebot\EventHandler(
-                \Erebot\CallableWrapper::wrap(array($this, 'handleExit')),
+                array($this, 'handleExit'),
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ExitEvent'
                 )
@@ -218,12 +218,12 @@ class IrcConnector extends \Erebot\Module\Base implements \Erebot\Interfaces\Hel
         } else {
             // Otherwise, start a TLS negociation.
             $handler = new \Erebot\NumericHandler(
-                \Erebot\CallableWrapper::wrap(array($this, 'handleSTARTTLSSuccess')),
+                array($this, 'handleSTARTTLSSuccess'),
                 $this->getNumRef('RPL_STARTTLSOK')
             );
             $this->connection->addNumericHandler($handler);
             $handler = new \Erebot\NumericHandler(
-                \Erebot\CallableWrapper::wrap(array($this, 'handleSTARTTLSFailure')),
+                array($this, 'handleSTARTTLSFailure'),
                 $this->getNumRef('ERR_STARTTLSFAIL')
             );
             $this->connection->addNumericHandler($handler);
